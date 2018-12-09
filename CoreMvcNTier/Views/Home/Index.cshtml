@@ -1,0 +1,37 @@
+﻿ @model CoreMvcNTier.ViewModel.AnasayfaViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<partial name="_Carousel" />
+<div id="mainBody">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar ================================================== -->
+            @(await Html.PartialAsync("_SolMenu", Model.Kategoriler))
+            <!-- Sidebar end=============================================== -->
+            <div class="span9">
+             
+                <h4>Latest Products </h4>
+                <ul class="thumbnails">
+                    @foreach (var item in Model.Urunler)
+                    {
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <a asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id" asp-route-proname="@item.Name"><img src="/themes/images/products/6.jpg" alt="" /></a>
+                                <div class="caption">
+                                    <h5>@item.Name</h5>
+                                    <p>
+                                        
+                                    </p>
+                                    <h4 style="text-align:center"><a class="btn"  > <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@item.Price</a></h4>
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
